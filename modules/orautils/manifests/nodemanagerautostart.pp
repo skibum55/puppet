@@ -74,8 +74,6 @@ define orautils::nodemanagerautostart(
      }
      Ubuntu:{
      	
-     	
-     	
      	exec { "${rc_config} ${scriptName}":
 	       command => "${rc_config} on ${scriptName}",
 	       require => File["/etc/init.d/${scriptName}"],
@@ -85,7 +83,7 @@ define orautils::nodemanagerautostart(
    	service { "${scriptName}":
         	  ensure  => running,
         	  enable  => true,
-        	  require => exec["sysv-rc-conf ${scriptName}"],
+        	  require => exec["${rc_config} ${scriptName}"],
    		}
      
      }
